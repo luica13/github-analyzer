@@ -18,4 +18,16 @@ Run instructions:
    + github.api.token=token yourtoken
 * open terminal(cmd)
 * docker build --tag analyzer:1.0 .
-* run docker run --publish 8080:8080 --detach --name bb analyzer:1.0
+* docker run --publish 8080:8080 --detach --name bb analyzer:1.0
+
+API: 
+
+* GET api/v1/repositories/${repo_name}/contributors?author=${owner}
+* GET api/v1/repositories/${repo_name}/commits?author=${owner}
+* GET api/v1/repositories/${repo_name}/timeline?author=${owner}
+* GET api/v1/repositories/search?keyword=${key}&page=${page_no}
+
+* PUT api/v1/bookmarks/${userUUID}
+* GET api/v1/bookmarks?userUUId=${userUUID}
+
+
