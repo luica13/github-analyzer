@@ -1,5 +1,6 @@
 package com.analyzer.system.config;
 
+import java.nio.charset.StandardCharsets;
 import java.util.function.Consumer;
 
 import org.springframework.beans.factory.annotation.Value;
@@ -8,6 +9,7 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.http.HttpHeaders;
+import org.springframework.util.Base64Utils;
 import org.springframework.web.reactive.function.client.WebClient;
 
 @Configuration
@@ -34,15 +36,12 @@ public class GitHubClientConfiguration {
 
 		return httpHeaders -> {
 			httpHeaders.add(HttpHeaders.CONTENT_TYPE, "application/json");
-			httpHeaders.add(HttpHeaders.AUTHORIZATION, token);
+			httpHeaders.add(HttpHeaders.AUTHORIZATION, basicAuthorization(token));
 		};
 	}
 
-//	private static String basicAuthorization(final String token) {
-//
-//		final byte[] basicAuthValue = token.getBytes(StandardCharsets.UTF_8);
-//		final String encoded = Base64Utils.encodeToString(basicAuthValue);
-//
-//		return String.format("Basic %s", encoded);
-//	}
+	private static String basicAuthorization(final String token) {
+		final byte[] decoded = Base64Utils.decodeFromString(token);
+		return String.format("token %s", new String(decoded, StandardCharsets.US_ASCII));
+	}
 }

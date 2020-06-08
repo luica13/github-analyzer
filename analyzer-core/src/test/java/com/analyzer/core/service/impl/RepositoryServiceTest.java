@@ -10,22 +10,18 @@ import java.util.List;
 
 import org.junit.Before;
 import org.junit.Test;
-import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
-import org.springframework.test.context.junit4.SpringRunner;
 
 import com.analyzer.core.dto.Repository;
 import com.analyzer.core.exception.IntegrationException;
 import com.analyzer.core.service.RepositoryService;
-import com.analyzer.core.service.impl.GitHubRepositoryService;
 import com.analyzer.system.exception.SystemRuntimeException;
 import com.analyzer.system.model.Repository.Owner;
 import com.analyzer.system.model.RepositorySearchResponse;
 import com.analyzer.system.service.RepositoryApi;
 
-@RunWith(SpringRunner.class)
-public class RepositoryServiceTest {
+public class RepositoryServiceTest  extends BaseServiceTest{
 
 	@Mock
 	private RepositoryApi repositoryApi;

@@ -34,16 +34,17 @@ public class CommitsApi {
 	}
 	
 	public List<CommitsStatisticsResponse> getCommits(@NonNull RepositoryStatisticsRequest request) {
-		Mono<ResponseEntity<List<CommitsStatisticsResponse>>> result = null;
+		ResponseEntity<List<CommitsStatisticsResponse>> result = null;
 		try {
 			result = webClient.get().uri(String.format(COMMITS_REPO_URI, request.getOwner(), request.getRepo(), PER_PAGE))
 					.retrieve()
 					.toEntityList(CommitsStatisticsResponse.class)
-					.onErrorResume(t -> Mono.error(new SystemRuntimeException(t.getMessage())));
+					.onErrorResume(t -> Mono.error(new SystemRuntimeException(t.getMessage())))
+					.block();
 		} catch (Exception e) {
 			throw new SystemRuntimeException(String.format("Failed to query statistics for repository with name - %s", request.getRepo()));
 		}
 		
-		return result.block().getBody();
+		return result.getBody();
 	}
 }

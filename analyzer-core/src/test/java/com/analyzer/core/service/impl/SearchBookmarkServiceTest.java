@@ -1,22 +1,18 @@
 package com.analyzer.core.service.impl;
 
+import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
-import static org.mockito.ArgumentMatchers.any;
 
 import org.junit.Before;
 import org.junit.Test;
-import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
-import org.springframework.test.context.junit4.SpringRunner;
 
 import com.analyzer.core.dto.Bookmark;
-import com.analyzer.core.service.impl.SearchBookmarkService;
 import com.analyzer.db.service.BookmarkService;
 
-@RunWith(SpringRunner.class)
-public class SearchBookmarkServiceTest {
+public class SearchBookmarkServiceTest  extends BaseServiceTest{
 
 	@Mock
 	private BookmarkService bookmarkService;

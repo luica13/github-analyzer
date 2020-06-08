@@ -15,7 +15,7 @@ Prerequisites:
 Run instructions:
 * clone app
 * generate github API token from your accoutn and copy it to application.properties file
-   + github.api.token=token yourtoken
+   + github.api.token=#yourtoken_in_base64
 * open terminal(cmd)
 * docker build --tag analyzer:1.0 .
 * docker run --publish 8080:8080 --detach --name bb analyzer:1.0
